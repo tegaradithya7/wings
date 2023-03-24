@@ -34,11 +34,12 @@ class Auth extends CI_Controller
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $data = [
+                    'id' => $user['id'],
                     'name' => $user['name'],
                     'username' => $user['username'],
                 ];
                 $this->session->set_userdata($data);
-                redirect('dashboard');
+                redirect('dashboard/home');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                 Password Wrong!
